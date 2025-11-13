@@ -50,7 +50,7 @@ SmartIce 培训系统是一个专为餐饮行业设计的轻量级学习管理�
 ### 克隆项目
 
 ```bash
-git clone https://github.com/Ray901027/smartice-training-lms.git
+git clone https://github.com/YukikoYoung/smartice-training-lms.git
 cd smartice-training-lms
 ```
 
@@ -372,8 +372,8 @@ docker-compose -f docker-compose.prod.yml build
 
 ### 开发者社区
 
-- 提问和讨论: [GitHub Issues](https://github.com/Ray901027/smartice-training-lms/issues)
-- 功能建议: [GitHub Discussions](https://github.com/Ray901027/smartice-training-lms/discussions)
+- 提问和讨论: [GitHub Issues](https://github.com/YukikoYoung/smartice-training-lms/issues)
+- 功能建议: [GitHub Discussions](https://github.com/YukikoYoung/smartice-training-lms/discussions)
 
 ---
 
@@ -427,8 +427,8 @@ docker-compose -f docker-compose.prod.yml build
 ## 📞 联系我们
 
 - **项目负责人**: SmartIce团队
-- **GitHub**: [@Ray901027](https://github.com/Ray901027)
-- **Issues**: [提交问题](https://github.com/Ray901027/smartice-training-lms/issues)
+- **GitHub**: [@YukikoYoung](https://github.com/YukikoYoung)
+- **Issues**: [提交问题](https://github.com/YukikoYoung/smartice-training-lms/issues)
 
 ---
 

@@ -161,7 +161,7 @@ grep -n "岗位名称" knowlege/厨房合并文档.md
 ## 项目状态
 
 **当前阶段**: 规划设计完成,准备启动开发(2025-11-13)
-**GitHub仓库**: https://github.com/Ray901027/smartice-training-lms
+**GitHub仓库**: https://github.com/YukikoYoung/smartice-training-lms
 **下一步**:
 1. 搭建开发环境(Node.js、PostgreSQL、Docker)
 2. 初始化前后端项目结构
@@ -198,6 +198,7 @@ git commit -m "docs: 初始化项目文档"
 
 # 创建远程仓库并推送(已完成)
 gh repo create smartice-training-lms --public --source=. --push
+# 仓库在YukikoYoung账号下
 
 # 日常提交规范
 git add .
