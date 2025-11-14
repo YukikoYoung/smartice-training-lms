@@ -1,0 +1,342 @@
+[
+  {
+    "content": "小李是一名服务员,在翻台高峰期看到后勤人员忙不过来。以下哪种做法最符合以勤劳者为本的价值观?",
+    "question_type": "single_choice",
+    "options": [
+      {"label": "A", "content": "这不是我的工作,我只负责服务区域", "is_correct": false},
+      {"label": "B", "content": "等后勤人员喊我帮忙再说", "is_correct": false},
+      {"label": "C", "content": "主动协助清理桌台,帮助客人尽快入座", "is_correct": true},
+      {"label": "D", "content": "我做完自己的事就可以了", "is_correct": false}
+    ],
+    "correct_answer": "C",
+    "explanation": "根据企业价值观文档,以勤劳者为本强调主动承担责任和团队协作精神。在高峰期，主动帮助其他岗位不仅能提升整体服务效率，也是对团队负责的体现。选项A、B、D都体现了事不关己的消极态度，不符合企业倡导的勤劳者精神。",
+    "category": "VALUE_DILIGENCE",
+    "difficulty": "medium",
+    "applicable_positions": "全岗位",
+    "department_type": "ALL",
+    "source_reference": "knowlege/企业价值观优化版.md - L62-71"
+  },
+  {
+    "content": "顾客点餐时表示不吃辣，服务员推荐了几道清淡菜品。顾客最终选择了其中一道价格较低的菜。服务员应该如何处理?",
+    "question_type": "single_choice",
+    "options": [
+      {"label": "A", "content": "尊重顾客选择，询问是否需要其他菜品", "is_correct": true},
+      {"label": "B", "content": "建议顾客加点一道高价菜以提高客单价", "is_correct": false},
+      {"label": "C", "content": "提醒顾客这道菜可能不够吃", "is_correct": false},
+      {"label": "D", "content": "表示不满，因为影响了自己的销售业绩", "is_correct": false}
+    ],
+    "correct_answer": "A",
+    "explanation": "根据帮助顾客价值观，服务的核心是满足顾客真实需求，而非追求高客单价。顾客已明确不吃辣且选择了符合预算的菜品，服务员应尊重选择并提供后续服务。选项B、C是强行推销，选项D则完全违背服务精神。",
+    "category": "VALUE_CUSTOMER",
+    "difficulty": "medium",
+    "applicable_positions": "L1-L3(服务员、收银员、主管)",
+    "department_type": "FOH",
+    "source_reference": "knowlege/企业价值观优化版.md - L103-128"
+  },
+  {
+    "content": "厨房和前厅因为出菜速度问题产生矛盾。作为主管，你应该采取以下哪种方式解决?(多选)",
+    "question_type": "multiple_choice",
+    "options": [
+      {"label": "A", "content": "立即组织双方沟通会，了解问题根源", "is_correct": true},
+      {"label": "B", "content": "明确各自的标准出菜时间和质量要求", "is_correct": true},
+      {"label": "C", "content": "判断谁对谁错，批评责任方", "is_correct": false},
+      {"label": "D", "content": "建立前后厅定期协调机制", "is_correct": true},
+      {"label": "E", "content": "让他们自己解决，不用管理层介入", "is_correct": false}
+    ],
+    "correct_answer": "A,B,D",
+    "explanation": "根据高效协作价值观，跨部门矛盾需要系统性解决：(1)沟通会了解双方诉求；(2)明确标准避免模糊地带；(3)建立长效机制预防问题。简单判定对错或放任不管都不能解决根本问题。",
+    "category": "VALUE_COLLABORATION",
+    "difficulty": "hard",
+    "applicable_positions": "L3-L5+(主管及以上)",
+    "department_type": "ALL",
+    "source_reference": "knowlege/企业价值观优化版.md - L173-206"
+  },
+  {
+    "content": "营业前的准备工作中，服务员需要检查餐具清洁度。发现有水渍的餐具应该如何处理?",
+    "question_type": "single_choice",
+    "options": [
+      {"label": "A", "content": "用餐巾纸擦拭干净即可使用", "is_correct": false},
+      {"label": "B", "content": "退回洗消间重新清洗消毒", "is_correct": true},
+      {"label": "C", "content": "放在一边，用其他餐具替代", "is_correct": false},
+      {"label": "D", "content": "只要不影响使用就可以", "is_correct": false}
+    ],
+    "correct_answer": "B",
+    "explanation": "根据前厅卫生标准，餐具必须达到光、洁、干、净四项标准。有水渍的餐具说明消毒或烘干环节有问题，必须退回重新处理。用餐巾纸擦拭无法保证卫生标准，可能造成二次污染。",
+    "category": "FOH_HYGIENE",
+    "difficulty": "easy",
+    "applicable_positions": "L1-L2(服务员)",
+    "department_type": "FOH",
+    "source_reference": "knowlege/前厅合并文档.md - L245-289"
+  },
+  {
+    "content": "顾客用餐过程中，服务员应该如何掌握巡台频率?",
+    "question_type": "single_choice",
+    "options": [
+      {"label": "A", "content": "每5分钟巡视一次所有桌台", "is_correct": false},
+      {"label": "B", "content": "等顾客呼叫时再过去服务", "is_correct": false},
+      {"label": "C", "content": "根据上菜节奏和顾客需求灵活巡台", "is_correct": true},
+      {"label": "D", "content": "只在上菜时巡台，其他时间不打扰", "is_correct": false}
+    ],
+    "correct_answer": "C",
+    "explanation": "根据前厅服务标准，巡台应该有眼力见：(1)上菜后及时询问菜品是否满意；(2)观察茶水、纸巾等消耗品；(3)注意顾客是否有需求信号。过于频繁会打扰用餐，过于被动又影响服务质量。",
+    "category": "FOH_SERVICE",
+    "difficulty": "medium",
+    "applicable_positions": "L1-L3(服务员、主管)",
+    "department_type": "FOH",
+    "source_reference": "knowlege/前厅合并文档.md - L1089-1134"
+  },
+  {
+    "content": "收银员在结账时发现系统显示金额与实际菜品不符，应该如何处理?",
+    "question_type": "single_choice",
+    "options": [
+      {"label": "A", "content": "按系统显示金额收款，避免顾客等待", "is_correct": false},
+      {"label": "B", "content": "立即核对订单，确认无误后再收款", "is_correct": true},
+      {"label": "C", "content": "让顾客先付款，之后再调整", "is_correct": false},
+      {"label": "D", "content": "直接按照菜品重新计算金额", "is_correct": false}
+    ],
+    "correct_answer": "B",
+    "explanation": "根据收银工作标准，账款准确是第一原则。发现异常必须：(1)核对电子订单和实物菜品；(2)确认是否有加菜、退菜；(3)核实无误后收款。直接收款或擅自调整都可能造成财务差错。",
+    "category": "FOH_CASHIER",
+    "difficulty": "medium",
+    "applicable_positions": "L2-L3(收银员、主管)",
+    "department_type": "FOH",
+    "source_reference": "knowlege/前厅合并文档.md - L1342-1389"
+  },
+  {
+    "content": "服务员在为顾客点餐时，应该主动推荐高价菜品以提高客单价。",
+    "question_type": "true_false",
+    "options": [
+      {"label": "A", "content": "正确", "is_correct": false},
+      {"label": "B", "content": "错误", "is_correct": true}
+    ],
+    "correct_answer": "B",
+    "explanation": "根据帮助顾客价值观和前厅服务标准，点餐推荐应基于顾客需求（人数、口味偏好、预算），而非单纯追求高客单价。强行推荐高价菜品会让顾客感到不适，损害品牌形象。正确做法是：询问顾客需求→推荐招牌菜和适合菜品→尊重顾客选择。",
+    "category": "FOH_SERVICE",
+    "difficulty": "easy",
+    "applicable_positions": "L1-L2(服务员、收银员)",
+    "department_type": "FOH",
+    "source_reference": "knowlege/企业价值观优化版.md - L103-128"
+  },
+  {
+    "content": "作为前厅主管，在高峰期发现顾客投诉等位时间过长。以下哪些措施可以有效缓解问题?(多选)",
+    "question_type": "multiple_choice",
+    "options": [
+      {"label": "A", "content": "优化翻台流程，加快清台速度", "is_correct": true},
+      {"label": "B", "content": "提供等位区茶水和小食，改善等待体验", "is_correct": true},
+      {"label": "C", "content": "告诉顾客今天人多，您再等等", "is_correct": false},
+      {"label": "D", "content": "合理调配服务区域，提高服务效率", "is_correct": true},
+      {"label": "E", "content": "建议顾客改天再来", "is_correct": false}
+    ],
+    "correct_answer": "A,B,D",
+    "explanation": "根据前厅运营标准，高峰期管理需要多管齐下：(1)通过优化翻台流程（清台、摆台、引座）缩短等位时间；(2)提供茶水小食改善等待体验，降低顾客流失；(3)合理调配人力，确保服务效率。简单告知等待或建议改天都是服务意识不足的表现。",
+    "category": "FOH_MANAGEMENT",
+    "difficulty": "hard",
+    "applicable_positions": "L2-L5+(服务主管及以上)",
+    "department_type": "FOH",
+    "source_reference": "knowlege/前厅合并文档.md - L856-892"
+  },
+  {
+    "content": "顾客用餐结束准备离开时，服务员应该采取以下哪种送客方式?",
+    "question_type": "single_choice",
+    "options": [
+      {"label": "A", "content": "在吧台微笑目送顾客离开", "is_correct": false},
+      {"label": "B", "content": "大声喊欢迎下次光临", "is_correct": true},
+      {"label": "C", "content": "继续忙自己的工作，不用特别理会", "is_correct": false},
+      {"label": "D", "content": "只在顾客主动致意时才回应", "is_correct": false}
+    ],
+    "correct_answer": "B",
+    "explanation": "根据前厅服务标准，送客是服务闭环的重要一环。标准送客流程包括：(1)提醒顾客携带随身物品；(2)为顾客拉门/按电梯；(3)目送顾客离开并致谢欢迎下次光临。热情的送客能加深顾客好感，提高回头率。",
+    "category": "FOH_SERVICE",
+    "difficulty": "medium",
+    "applicable_positions": "L1-L3(服务员、收银员、主管)",
+    "department_type": "FOH",
+    "source_reference": "knowlege/前厅合并文档.md - L1205-1230"
+  },
+  {
+    "content": "前厅区域发现地面有水渍，服务员应该如何处理?",
+    "question_type": "single_choice",
+    "options": [
+      {"label": "A", "content": "等保洁人员来处理", "is_correct": false},
+      {"label": "B", "content": "立即清理并放置警示牌", "is_correct": true},
+      {"label": "C", "content": "通知主管安排处理", "is_correct": false},
+      {"label": "D", "content": "提醒顾客注意脚下", "is_correct": false}
+    ],
+    "correct_answer": "B",
+    "explanation": "根据前厅安全标准，地面水渍是紧急安全隐患，可能导致顾客或员工滑倒。发现后必须立即处理：(1)快速清理水渍；(2)放置小心地滑警示牌；(3)确认地面干燥后撤牌。等待他人处理或仅提醒都不能及时消除风险。",
+    "category": "FOH_SAFETY",
+    "difficulty": "easy",
+    "applicable_positions": "L1-L2(服务员)",
+    "department_type": "FOH",
+    "source_reference": "knowlege/前厅合并文档.md - L1445-1478"
+  },
+  {
+    "content": "厨房开餐前准备中，炉灶师傅发现煤气灶火焰颜色发黄，应该如何处理?",
+    "question_type": "single_choice",
+    "options": [
+      {"label": "A", "content": "继续使用，火焰颜色不影响烹饪", "is_correct": false},
+      {"label": "B", "content": "立即停止使用并报告主管检修", "is_correct": true},
+      {"label": "C", "content": "调大火力，让火焰变蓝", "is_correct": false},
+      {"label": "D", "content": "清洁灶台后继续使用", "is_correct": false}
+    ],
+    "correct_answer": "B",
+    "explanation": "根据厨房设备安全标准，正常煤气火焰应为蓝色。黄色火焰表示燃烧不充分，可能存在：(1)煤气泄漏风险；(2)一氧化碳超标；(3)灶具故障。必须立即停止使用并由专业人员检修，继续使用可能造成安全事故。",
+    "category": "BOH_SAFETY",
+    "difficulty": "medium",
+    "applicable_positions": "L2-L4(炉灶、主管、厨师长)",
+    "department_type": "BOH",
+    "source_reference": "knowlege/厨房合并文档.md - L2145-2189"
+  },
+  {
+    "content": "切配员工在处理生鲜食材后，换到蔬菜加工前需要做什么?",
+    "question_type": "single_choice",
+    "options": [
+      {"label": "A", "content": "用水冲洗双手即可", "is_correct": false},
+      {"label": "B", "content": "使用洗手液清洗并消毒双手，更换砧板和刀具", "is_correct": true},
+      {"label": "C", "content": "用干净毛巾擦手后继续工作", "is_correct": false},
+      {"label": "D", "content": "只更换砧板，刀具冲洗后继续用", "is_correct": false}
+    ],
+    "correct_answer": "B",
+    "explanation": "根据厨房食品安全标准，生熟分离包括：(1)人员：处理生鲜后必须彻底清洗消毒双手；(2)工具：生熟食材使用不同砧板、刀具；(3)容器：分开存放。任何一个环节疏忽都可能造成交叉污染，导致食品安全事故。",
+    "category": "BOH_HYGIENE",
+    "difficulty": "medium",
+    "applicable_positions": "L1-L3(帮厨、切配、主管)",
+    "department_type": "BOH",
+    "source_reference": "knowlege/厨房合并文档.md - L723-768"
+  },
+  {
+    "content": "炉灶师傅在高峰期发现某道菜的备料即将用完，但备料岗位人员正在处理其他任务。应该如何处理?",
+    "question_type": "single_choice",
+    "options": [
+      {"label": "A", "content": "继续出菜，等备料岗位主动发现", "is_correct": false},
+      {"label": "B", "content": "立即告知备料岗位，并询问预计完成时间", "is_correct": true},
+      {"label": "C", "content": "暂停这道菜的制作，通知前厅暂停接单", "is_correct": false},
+      {"label": "D", "content": "自己去准备备料，保证出菜速度", "is_correct": false}
+    ],
+    "correct_answer": "B",
+    "explanation": "根据高效协作价值观和厨房协作标准，发现问题应立即主动沟通。正确流程：(1)立即告知备料岗位缺料情况；(2)询问预计完成时间；(3)根据时间评估是否需要通知前厅；(4)如确实来不及，及时通知前厅暂停接单。默不作声或擅自离岗都会影响整体效率。",
+    "category": "BOH_OPERATION",
+    "difficulty": "medium",
+    "applicable_positions": "L2-L4(炉灶、主管、厨师长)",
+    "department_type": "BOH",
+    "source_reference": "knowlege/企业价值观优化版.md - L173-206"
+  },
+  {
+    "content": "切配员工在下班前只需要清洗砧板和刀具，其他区域由保洁人员负责。",
+    "question_type": "true_false",
+    "options": [
+      {"label": "A", "content": "正确", "is_correct": false},
+      {"label": "B", "content": "错误", "is_correct": true}
+    ],
+    "correct_answer": "B",
+    "explanation": "根据以勤劳者为本价值观和厨房卫生标准，每个岗位员工都对自己的工作区域负全责。切配员工下班前必须完成：(1)清洗消毒砧板、刀具；(2)清理工作台面；(3)清扫地面；(4)检查水龙头、电源是否关闭。保洁人员负责公共区域，但不代替个人区域责任。",
+    "category": "BOH_HYGIENE",
+    "difficulty": "easy",
+    "applicable_positions": "L1-L2(帮厨、切配、炉灶)",
+    "department_type": "BOH",
+    "source_reference": "knowlege/厨房合并文档.md - L892-935"
+  },
+  {
+    "content": "厨师长在进行食品安全检查时，发现以下哪些情况必须立即处理?(多选)",
+    "question_type": "multiple_choice",
+    "options": [
+      {"label": "A", "content": "冷藏柜温度显示8°C", "is_correct": true},
+      {"label": "B", "content": "生熟食材存放在同一层", "is_correct": true},
+      {"label": "C", "content": "员工佩戴手表进行食材处理", "is_correct": true},
+      {"label": "D", "content": "食材标签完整但字迹较小", "is_correct": false},
+      {"label": "E", "content": "厨房地面有轻微积水", "is_correct": true}
+    ],
+    "correct_answer": "A,B,C,E",
+    "explanation": "根据厨房食品安全标准：(1)冷藏柜必须保持0-4°C，8°C已超标，可能导致食材变质；(2)生熟分离是防止交叉污染的基本原则；(3)手表、饰品等可能藏污纳垢，必须摘除；(4)地面积水易导致滑倒且影响卫生。标签字迹大小虽需改进，但非即时风险。",
+    "category": "BOH_SAFETY",
+    "difficulty": "hard",
+    "applicable_positions": "L3-L5+(厨房主管、厨师长、区域经理)",
+    "department_type": "BOH",
+    "source_reference": "knowlege/厨房合并文档.md - L1567-1612"
+  },
+  {
+    "content": "备料岗位在准备食材时，发现冷藏柜中有一袋鸡肉没有标签。应该如何处理?",
+    "question_type": "single_choice",
+    "options": [
+      {"label": "A", "content": "闻一下没有异味就可以使用", "is_correct": false},
+      {"label": "B", "content": "询问其他员工这是什么时候放入的", "is_correct": false},
+      {"label": "C", "content": "按照可疑食材处理，隔离并报告主管", "is_correct": true},
+      {"label": "D", "content": "先用着，下次记得贴标签", "is_correct": false}
+    ],
+    "correct_answer": "C",
+    "explanation": "根据厨房食品安全标准，所有食材必须有完整标签（品名、日期、保质期）。无标签食材无法确认：(1)进货时间；(2)是否在保质期内；(3)储存条件是否正确。必须按照可疑食材处理：隔离→报告→记录→销毁。不能凭经验判断或口头询问。",
+    "category": "BOH_HYGIENE",
+    "difficulty": "medium",
+    "applicable_positions": "L1-L3(帮厨、备料、主管)",
+    "department_type": "BOH",
+    "source_reference": "knowlege/厨房合并文档.md - L1567-1612"
+  },
+  {
+    "content": "厨房员工在烹饪过程中不小心切伤手指，伤口较小。应该如何处理?",
+    "question_type": "single_choice",
+    "options": [
+      {"label": "A", "content": "用清水冲洗后戴上创可贴继续工作", "is_correct": false},
+      {"label": "B", "content": "消毒包扎，戴上防水手套和指套后才能继续工作", "is_correct": true},
+      {"label": "C", "content": "忍一下，不影响工作就不用处理", "is_correct": false},
+      {"label": "D", "content": "下班后再处理伤口", "is_correct": false}
+    ],
+    "correct_answer": "B",
+    "explanation": "根据厨房卫生和安全标准，即使是小伤口也必须规范处理：(1)立即停止工作，用流水冲洗伤口；(2)消毒并包扎；(3)戴上防水手套和蓝色指套（便于识别）；(4)如伤口较深或无法有效防护，应暂时离开食材处理岗位。伤口是细菌污染源，必须严格防护。",
+    "category": "BOH_SAFETY",
+    "difficulty": "medium",
+    "applicable_positions": "L1-L4(全厨房岗位)",
+    "department_type": "BOH",
+    "source_reference": "knowlege/厨房合并文档.md - L2234-2278"
+  },
+  {
+    "content": "员工小王发现主管在排班时总是给关系好的同事安排较好的班次。根据平等透明价值观，小王应该如何处理?",
+    "question_type": "single_choice",
+    "options": [
+      {"label": "A", "content": "私下找主管说明情况，要求公平排班", "is_correct": true},
+      {"label": "B", "content": "忍气吞声，避免得罪主管", "is_correct": false},
+      {"label": "C", "content": "直接向区域经理投诉", "is_correct": false},
+      {"label": "D", "content": "在同事间散布不满情绪", "is_correct": false}
+    ],
+    "correct_answer": "A",
+    "explanation": "根据平等透明价值观，企业鼓励员工发现不公平现象时主动沟通。正确处理方式：(1)先与直接主管私下沟通，说明问题和诉求；(2)如主管不改进，再通过正式渠道反馈；(3)避免背后议论，破坏团队氛围。平等透明不仅是制度保障，更需要员工主动维护。",
+    "category": "VALUE_TRANSPARENCY",
+    "difficulty": "medium",
+    "applicable_positions": "全岗位",
+    "department_type": "ALL",
+    "source_reference": "knowlege/企业价值观优化版.md - L241-281"
+  },
+  {
+    "content": "作为部门主管，以下哪些做法体现了高效协作的价值观?(多选)",
+    "question_type": "multiple_choice",
+    "options": [
+      {"label": "A", "content": "定期组织跨部门协调会，解决流程问题", "is_correct": true},
+      {"label": "B", "content": "建立部门工作群，及时同步信息", "is_correct": true},
+      {"label": "C", "content": "本部门问题优先，其他部门需求延后处理", "is_correct": false},
+      {"label": "D", "content": "鼓励员工主动帮助其他岗位解决问题", "is_correct": true},
+      {"label": "E", "content": "严格划分岗位职责，避免越界", "is_correct": false}
+    ],
+    "correct_answer": "A,B,D",
+    "explanation": "根据高效协作价值观，管理层应主动搭建协作平台：(1)定期协调会能及时发现和解决跨部门问题；(2)信息透明化避免沟通断层；(3)鼓励员工跨岗位互助提升整体效率。过分强调部门利益或严格岗位边界会阻碍协作。有效的协作文化需要制度支持+文化倡导。",
+    "category": "VALUE_COLLABORATION",
+    "difficulty": "hard",
+    "applicable_positions": "L3-L5+(主管及以上)",
+    "department_type": "ALL",
+    "source_reference": "knowlege/企业价值观优化版.md - L173-206"
+  },
+  {
+    "content": "新员工小张工作勤奋，但经常因为不熟悉流程导致返工。根据以勤劳者为本价值观，主管应该如何评价?",
+    "question_type": "single_choice",
+    "options": [
+      {"label": "A", "content": "勤奋就是好员工，不用在意效率问题", "is_correct": false},
+      {"label": "B", "content": "肯定勤奋态度，同时安排培训提升效率", "is_correct": true},
+      {"label": "C", "content": "批评小张浪费时间，要求立即改进", "is_correct": false},
+      {"label": "D", "content": "让小张多观察老员工，自己摸索学习", "is_correct": false}
+    ],
+    "correct_answer": "B",
+    "explanation": "根据以勤劳者为本价值观，企业认可的勤劳是有效的努力而非盲目的忙碌。对新员工的正确做法：(1)肯定勤奋态度，保护工作积极性；(2)分析返工原因（流程不熟、技能不足）；(3)安排针对性培训；(4)跟踪改进效果。单纯批评或放任都不是有效管理。",
+    "category": "VALUE_DILIGENCE",
+    "difficulty": "medium",
+    "applicable_positions": "L1-L3(基层员工、主管)",
+    "department_type": "ALL",
+    "source_reference": "knowlege/企业价值观优化版.md - L62-91"
+  }
+]
