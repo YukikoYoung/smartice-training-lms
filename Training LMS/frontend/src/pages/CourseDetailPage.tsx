@@ -6,8 +6,9 @@ import { Course, CourseProgress } from '../types';
 import './CourseDetailPage.css';
 
 const CourseDetailPage: React.FC = () => {
-  const { courseId } = useParams<{ courseId: string }>();
+  const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const courseId = id;
 
   const [course, setCourse] = useState<Course | null>(null);
   const [progress, setProgress] = useState<CourseProgress | null>(null);
