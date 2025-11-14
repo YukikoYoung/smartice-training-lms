@@ -5,8 +5,9 @@ import { Exam, Question, AnswerSubmit, ExamResult } from '../types';
 import './ExamPage.css';
 
 const ExamPage: React.FC = () => {
-  const { examId } = useParams<{ examId: string }>();
+  const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const examId = id;
 
   const [exam, setExam] = useState<Exam | null>(null);
   const [questions, setQuestions] = useState<Question[]>([]);
