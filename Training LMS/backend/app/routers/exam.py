@@ -232,15 +232,30 @@ def start_exam_api(
     - 创建考试记录
     - 检查补考冷却期
     - 检查最大尝试次数
+    - 返回题目列表
 
     - **exam_id**: 考试ID
     """
     exam_record = exam_service.start_exam(db, current_user.id, exam_id)
+
+    # 获取考试对象
+    exam = exam_service.get_exam_by_id(db, exam_id)
+
+    # 获取题目列表
+    questions = []
+    if exam and exam.question_ids:
+        from ..models.exam import Question
+        questions = db.query(Question).filter(Question.id.in_(exam.question_ids)).all()
+        # 转换为响应格式
+        from ..schemas.exam import QuestionResponse
+        questions = [QuestionResponse.from_orm(q) for q in questions]
+
     return {
         "exam_record_id": exam_record.id,
         "exam_id": exam_record.exam_id,
         "attempt_number": exam_record.attempt_number,
         "started_at": exam_record.started_at,
+        "questions": questions,
         "message": "考试已开始"
     }
 
