@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LMS培训系统 - 快速启动版</title>
+  <link rel="stylesheet" href="https://unpkg.com/element-plus@2.4.4/dist/index.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; background: #f0f2f5; }
+    #app { height: 100vh; overflow: hidden; }
+    .login-container { height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+    .login-box { width: 400px; padding: 40px; background: white; border-radius: 10px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1); }
+    .login-title { text-align: center; margin-bottom: 30px; font-size: 24px; font-weight: bold; color: #333; }
+    .main-layout { height: 100vh; display: flex; flex-direction: column; }
+    .main-header { background: white; border-bottom: 1px solid #e8e8e8; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; height: 60px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); }
+    .logo { font-size: 20px; font-weight: bold; color: #667eea; }
+    .main-body { display: flex; flex: 1; overflow: hidden; }
+    .sidebar { width: 200px; background: white; border-right: 1px solid #e8e8e8; overflow-y: auto; }
+    .content { flex: 1; padding: 20px; overflow-y: auto; }
+    .dashboard-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 20px; }
+    .stat-card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); }
+    .stat-card .value { font-size: 32px; font-weight: bold; color: #667eea; margin: 10px 0; }
+    .stat-card .label { color: #999; font-size: 14px; }
+    .course-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+    .course-card { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); transition: transform 0.2s; cursor: pointer; }
+    .course-card:hover { transform: translateY(-4px); box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); }
+    .course-cover { width: 100%; height: 180px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 48px; }
+    .course-info { padding: 15px; }
+    .course-title { font-size: 16px; font-weight: bold; margin-bottom: 8px; }
+    @media (max-width: 768px) { .dashboard-cards { grid-template-columns: repeat(2, 1fr); } .course-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div v-if="!isLoggedIn" class="login-container">
+      <div class="login-box">
+        <div class="login-title">🎓 LMS培训系统</div>
+        <el-form :model="loginForm">
+          <el-form-item><el-input v-model="loginForm.email" placeholder="邮箱" size="large"></el-input></el-form-item>
+          <el-form-item><el-input v-model="loginForm.password" type="password" placeholder="密码" size="large" @keyup.enter="handleLogin"></el-input></el-form-item>
+          <el-form-item><el-button type="primary" size="large" style="width: 100%" @click="handleLogin">登录</el-button></el-form-item>
+        </el-form>
+        <div style="text-align: center; margin-top: 10px; font-size: 12px; color: #999;">
+          演示账号：student@example.com / 任意密码
+        </div>
+      </div>
+    </div>
+
+    <div v-else class="main-layout">
+      <div class="main-header">
+        <div class="logo">🎓 LMS培训系统</div>
+        <div>
+          <el-dropdown @command="handleLogout">
+            <span style="cursor: pointer;">{{ currentUser?.name || '用户' }} <i class="el-icon-arrow-down"></i></span>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item>{{ currentUser?.role }}</el-dropdown-item>
+                <el-dropdown-item divided command="logout">退出登录</el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
+        </div>
+      </div>
+
+      <div class="main-body">
+        <div class="sidebar">
+          <el-menu :default-active="currentView" @select="handleMenuSelect">
+            <el-menu-item index="dashboard"><span>📊 数据看板</span></el-menu-item>
+            <el-menu-item index="my-courses" v-if="currentUser?.role === 'student'"><span>📚 我的课程</span></el-menu-item>
+            <el-menu-item index="courses" v-if="currentUser?.role === 'trainer'"><span>🎓 课程管理</span></el-menu-item>
+          </el-menu>
+        </div>
+
+        <div class="content">
+          <div v-if="currentView === 'dashboard'">
+            <h2 style="margin-bottom: 20px;">数据看板</h2>
+            <div class="dashboard-cards">
+              <div class="stat-card"><div class="label">总学员数</div><div class="value">156</div></div>
+              <div class="stat-card"><div class="label">课程总数</div><div class="value">24</div></div>
+              <div class="stat-card"><div class="label">完成课程数</div><div class="value">342</div></div>
+              <div class="stat-card"><div class="label">考试通过率</div><div class="value">87%</div></div>
+            </div>
+          </div>
+
+          <div v-if="currentView === 'my-courses'">
+            <h2 style="margin-bottom: 20px;">我的课程</h2>
+            <div class="course-grid">
+              <div v-for="course in myCourses" :key="course.id" class="course-card">
+                <div class="course-cover">📚</div>
+                <div class="course-info">
+                  <div class="course-title">{{ course.name }}</div>
+                  <el-progress :percentage="course.progress" style="margin: 10px 0;"></el-progress>
+                  <div style="font-size: 12px; color: #999;">
+                    <el-tag v-if="course.required" type="danger" size="small">必修</el-tag>
+                    <el-tag v-else type="info" size="small">选修</el-tag>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/vue@3.3.11/dist/vue.global.js"></script>
+  <script src="https://unpkg.com/element-plus@2.4.4/dist/index.full.js"></script>
+  <script>
+    const { createApp } = Vue;
+    createApp({
+      data() {
+        return {
+          isLoggedIn: false,
+          loginForm: { email: '', password: '' },
+          currentUser: null,
+          currentView: 'dashboard',
+          myCourses: [
+            { id: 1, name: '服务员入职培训', progress: 75, required: true },
+            { id: 2, name: '食品安全与卫生', progress: 100, required: true },
+            { id: 3, name: '高端接待技巧', progress: 30, required: false },
+            { id: 4, name: '红酒知识入门', progress: 0, required: false }
+          ]
+        };
+      },
+      methods: {
+        handleLogin() {
+          const users = {
+            'admin@example.com': { name: '系统管理员', role: 'admin' },
+            'trainer@example.com': { name: '培训负责人', role: 'trainer' },
+            'student@example.com': { name: '张三', role: 'student' }
+          };
+          this.currentUser = users[this.loginForm.email] || users['student@example.com'];
+          this.isLoggedIn = true;
+          ElementPlus.ElMessage.success('登录成功！');
+        },
+        handleLogout() {
+          this.isLoggedIn = false;
+          this.currentUser = null;
+          ElementPlus.ElMessage.success('已退出登录');
+        },
+        handleMenuSelect(index) {
+          this.currentView = index;
+        }
+      }
+    }).use(ElementPlus).mount('#app');
+  </script>
+</body>
+</html>
