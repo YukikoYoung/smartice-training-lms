@@ -1878,32 +1878,45 @@ SmartIce LMS 学习管理系统
 
 ### 6.1 技术架构
 
-**技术栈**：
-- **前端**：Next.js 15 (React 19), TypeScript, Tailwind CSS, shadcn/ui
-- **后端**：Next.js API Routes, Server Actions
-- **数据库**：PostgreSQL 16
-- **ORM**：Prisma
-- **缓存**：Redis 7
-- **对象存储**：MinIO（视频、文档、图片）
-- **认证**：NextAuth.js
-- **容器化**：Docker, Docker Compose
+**技术栈（v2.1实际采用）**：
+- **前端**：Vite 7 + React 18.2, TypeScript, 纯CSS
+- **后端**：FastAPI (Python 3.8+) + Uvicorn
+- **数据库**：SQLite (开发) / PostgreSQL (生产计划)
+- **ORM**：SQLAlchemy 2.0
+- **缓存**：未实现 (计划中)
+- **对象存储**：未实现 (计划中)
+- **认证**：JWT (bcrypt 5.0 + PyJWT)
+- **容器化**：未实现 (计划中)
 
-**架构图**：
+**注**：实际采用前后端分离架构，而非PRD v2.0规划的Next.js全栈架构。详见第11.4节技术选型说明。
+
+**架构图（v2.1实际架构）**：
 
 ```
-[浏览器客户端]
-    ↓ HTTPS
-[Nginx 反向代理]
-    ↓
-[Next.js 应用服务器]（可横向扩展）
-    ├── 前端 (React Server Components)
-    ├── API Routes
-    ├── Server Actions
-    └── 认证中间件 (NextAuth.js)
-    ↓                       ↓
-[PostgreSQL]           [Redis]           [MinIO]
-（主数据库）           （缓存/会话）      （对象存储）
+┌─────────────────────┐        HTTP/REST API        ┌──────────────────────┐
+│   前端 (Vite + React)│ ◄──────────────────────────►│  后端 (FastAPI)      │
+│                     │                              │                      │
+│  - React 18.2       │                              │  - Python 3.8+       │
+│  - TypeScript       │                              │  - Pydantic验证      │
+│  - Axios (API调用)  │                              │  - JWT中间件         │
+│  - React Router v6  │                              │  - CORS处理          │
+└─────────────────────┘                              └──────────┬───────────┘
+                                                                │
+                                                                │
+                                                      ┌─────────▼───────────┐
+                                                      │  SQLAlchemy ORM     │
+                                                      └─────────┬───────────┘
+                                                                │
+                                                      ┌─────────▼───────────┐
+                                                      │  SQLite / PostgreSQL│
+                                                      └─────────────────────┘
 ```
+
+**架构特点**：
+- 前后端完全分离，独立部署
+- RESTful API通信（非Next.js内部调用）
+- 开发阶段使用SQLite，生产环境可切换PostgreSQL
+- 前端使用Vite构建，支持热重载和快速刷新
 
 ### 6.2 性能指标要求
 
@@ -2149,6 +2162,13 @@ SmartIce LMS 学习管理系统
 | **技术风险** | 低 | 低 | 中 | 中 | 高 |
 | **适合场景** | 大型企业 | **推荐方案** | 预算极限 | 技术栈不符 | 技术负责人极强 |
 
+**v2.1实际执行情况**（2025-11-14）：
+- **实际团队规模**：1人独立开发（+AI工具辅助）
+- **实际开发周期**：8-10周（预计，比原计划快30-40%）
+- **实际技术栈**：FastAPI(后端) + Vite(前端)，详见第11.4节技术选型说明
+- **实际AI工具成本**：¥360/月（Cursor+Claude+Copilot，仅3种工具）
+- **实际第一年投入**：远低于原预算（个人开发项目，无团队人力成本）
+
 #### 推荐方案：AI辅助的精简团队开发（方案2）
 
 **选择理由**：
@@ -2167,9 +2187,10 @@ SmartIce LMS 学习管理系统
    - 团队精简但不极端，管理复杂度可控
    - 招聘难度适中
 
-4. **技术栈完全吻合**
-   - 基于Next.js + React + PostgreSQL，完全符合技术选型
-   - 无需学习新技术栈
+4. **技术栈选择** *(v2.1实际调整)*
+   - ~~原计划：Next.js + React + PostgreSQL~~
+   - **v2.1实际采用**：FastAPI(后端) + Vite(前端) + SQLAlchemy
+   - 理由：团队Python经验更丰富，FastAPI开发效率更高
    - 便于后续维护和扩展
 
 5. **代码质量有保障**
