@@ -202,13 +202,20 @@ def start_exam(db: Session, user_id: int, exam_id: int) -> ExamRecord:
         )
 
     # 检查用户是否可以参加考试
+    # 注意：只统计已完成的考试（COMPLETED或FAILED），IN_PROGRESS不算
     existing_records = db.query(ExamRecord).filter(
         ExamRecord.user_id == user_id,
         ExamRecord.exam_id == exam_id
     ).order_by(ExamRecord.attempt_number.desc()).all()
 
-    # 计算当前是第几次考试
-    attempt_number = len(existing_records) + 1
+    # 只统计已提交的考试记录（已完成或失败）
+    completed_attempts = [
+        r for r in existing_records
+        if r.status in [ExamStatus.COMPLETED, ExamStatus.FAILED]
+    ]
+
+    # 计算当前是第几次考试（基于已完成的考试数）
+    attempt_number = len(completed_attempts) + 1
 
     # 检查是否超过最大尝试次数
     if attempt_number > exam.max_attempts:
@@ -217,13 +224,13 @@ def start_exam(db: Session, user_id: int, exam_id: int) -> ExamRecord:
             detail=f"已达到最大考试次数 {exam.max_attempts}"
         )
 
-    # 检查是否在补考冷却期内
-    if existing_records:
-        last_record = existing_records[0]
-        if last_record.next_retake_at and last_record.next_retake_at > datetime.utcnow():
+    # 检查是否在补考冷却期内（只检查已完成的考试）
+    if completed_attempts:
+        last_completed = completed_attempts[0]  # 最近一次已完成的考试
+        if last_completed.next_retake_at and last_completed.next_retake_at > datetime.utcnow():
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
-                detail=f"补考冷却期未过，下次可考时间：{last_record.next_retake_at}"
+                detail=f"补考冷却期未过，下次可考时间：{last_completed.next_retake_at}"
             )
 
     # 创建考试记录
