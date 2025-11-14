@@ -3,7 +3,7 @@
  */
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { authAPI } from '../api';
-import type { User, LoginRequest } from '../types';
+import type { User } from '../types';
 
 interface AuthContextType {
   user: User | null;

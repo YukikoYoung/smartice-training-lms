@@ -23,7 +23,7 @@ const DashboardPage: React.FC = () => {
 
       const [statsData, progressData, recordsData] = await Promise.all([
         learningAPI.getStats(),
-        learningAPI.getAllProgress(),
+        learningAPI.getCourseProgress(), // 不传参数获取所有课程进度
         examAPI.getRecords(),
       ]);
 

@@ -29,13 +29,14 @@ const CourseDetailPage: React.FC = () => {
       setLoading(true);
       setError('');
 
-      const [courseData, progressData] = await Promise.all([
+      const [courseData, progressDataArray] = await Promise.all([
         courseAPI.getDetail(parseInt(courseId)),
-        learningAPI.getCourseProgress(parseInt(courseId)).catch(() => null),
+        learningAPI.getCourseProgress(parseInt(courseId)).catch(() => []),
       ]);
 
       setCourse(courseData);
-      setProgress(progressData);
+      // getCourseProgress返回数组，取第一个元素
+      setProgress(progressDataArray.length > 0 ? progressDataArray[0] : null);
     } catch (err: any) {
       console.error('加载课程详情失败:', err);
       setError(err.message || '加载课程详情失败');
