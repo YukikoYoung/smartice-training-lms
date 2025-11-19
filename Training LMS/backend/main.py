@@ -3,11 +3,13 @@ FastAPI主应用入口
 """
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from contextlib import asynccontextmanager
+import os
 
 from app.core.config import settings
 from app.core.database import engine, Base
-from app.routers import auth, course, exam, learning
+from app.routers import auth, course, exam, learning, user, stats, feature
 
 
 # 导入所有模型（确保创建表）
@@ -15,7 +17,8 @@ from app.models import (
     User, Region, Store, Position,
     Course, Chapter, Content,
     Exam, Question,
-    CourseProgress, ChapterProgress, ExamRecord, DailyQuizRecord, ValueAssessment
+    CourseProgress, ChapterProgress, ExamRecord, DailyQuizRecord, ValueAssessment,
+    Notification, Note, WrongQuestion, Certificate
 )
 
 
@@ -57,6 +60,8 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:5173",
         "http://127.0.0.1:5173",
+        "http://localhost:5174",  # 额外的Vite端口
+        "http://127.0.0.1:5174",
         "http://localhost:3000",
         "http://127.0.0.1:3000",
         "http://localhost:5500",  # VS Code Live Server默认端口
@@ -74,9 +79,22 @@ app.add_middleware(
 
 # 注册路由
 app.include_router(auth.router)  # 认证路由
+app.include_router(user.router)  # 用户管理路由
 app.include_router(course.router)  # 课程管理路由
 app.include_router(exam.router)  # 考试系统路由
 app.include_router(learning.router)  # 学习进度路由
+app.include_router(stats.router)  # 统计数据路由
+app.include_router(feature.router)  # 辅助功能路由 (通知、笔记、错题、证书等)
+
+# 配置静态文件服务
+# 挂载backend/content目录，允许前端访问课程内容文件（Markdown、视频等）
+content_dir = os.path.join(os.path.dirname(__file__), "content")
+if not os.path.exists(content_dir):
+    os.makedirs(content_dir)
+    print(f"[静态文件] 创建content目录: {content_dir}")
+
+app.mount("/content", StaticFiles(directory=content_dir), name="content")
+print(f"[静态文件] 已挂载静态文件目录: {content_dir}")
 
 
 @app.get("/")

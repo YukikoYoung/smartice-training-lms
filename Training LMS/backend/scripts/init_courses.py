@@ -42,9 +42,11 @@ def init_courses():
             code="FH-OPS-001",
             description="餐厅前厅全岗位运营管理标准手册，包含通用管理标准、服务礼仪、各岗位工作流程等核心内容。",
             department_type=DepartmentType.FRONT_HALL,
-            category="岗位技能",
+            category="skill",
             is_mandatory=True,
             version="VN202501-MERGED",
+            is_published=True,
+            is_active=True,
             created_by=creator_id
         )
         db.add(course_fronthall)
@@ -198,9 +200,11 @@ def init_courses():
             code="KC-OPS-001",
             description="餐厅厨房运营标准与各岗位工作流程手册，包含通用管理标准、食品安全、各岗位操作流程、设备管理等。",
             department_type=DepartmentType.KITCHEN,
-            category="岗位技能",
+            category="skill",
             is_mandatory=True,
             version="VN202510-R3",
+            is_published=True,
+            is_active=True,
             created_by=creator_id
         )
         db.add(course_kitchen)

@@ -191,9 +191,14 @@ def update_course_progress_by_chapter(db: Session, user_id: int, course_id: int)
     if not chapter_progresses:
         return
 
+    # 获取课程实际的章节总数
+    course = db.query(Course).filter(Course.id == course_id).first()
+    if not course:
+        return
+    total_chapters = len(course.chapters)
+
     # 计算已完成章节数
     completed_count = sum(1 for p in chapter_progresses if p.status == LearningStatus.COMPLETED)
-    total_chapters = len(chapter_progresses)
 
     # 更新课程进度
     course_progress = get_or_create_course_progress(db, user_id, course_id)

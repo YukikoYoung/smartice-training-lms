@@ -13,6 +13,10 @@ from .learning import (
     ExamStatus,
     ValueScore,
 )
+from .notification import Notification, NotificationType
+from .note import Note
+from .wrong_question import WrongQuestion
+from .certificate import Certificate
 
 __all__ = [
     "User",
@@ -38,4 +42,9 @@ __all__ = [
     "LearningStatus",
     "ExamStatus",
     "ValueScore",
+    "Notification",
+    "NotificationType",
+    "Note",
+    "WrongQuestion",
+    "Certificate",
 ]

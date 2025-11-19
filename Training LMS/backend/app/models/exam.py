@@ -40,8 +40,8 @@ class Question(Base):
 
     # 题目内容
     content = Column(Text, nullable=False, comment="题目内容")
-    question_type = Column(SQLEnum(QuestionType), nullable=False, comment="题目类型")
-    category = Column(SQLEnum(QuestionCategory), nullable=False, default=QuestionCategory.SKILL, comment="题目分类")
+    question_type = Column(SQLEnum(QuestionType, values_callable=lambda x: [e.value for e in x]), nullable=False, comment="题目类型")
+    category = Column(SQLEnum(QuestionCategory, values_callable=lambda x: [e.value for e in x]), nullable=False, default=QuestionCategory.SKILL, comment="题目分类")
 
     # 关联课程/章节（用于题库分类）
     course_id = Column(Integer, ForeignKey("courses.id"), nullable=True, comment="关联课程ID")

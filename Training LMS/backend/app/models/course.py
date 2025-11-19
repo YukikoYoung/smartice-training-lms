@@ -27,7 +27,11 @@ class Course(Base):
     cover_image = Column(String(500), nullable=True, comment="课程封面图片URL")
 
     # 分类与归属
-    department_type = Column(SQLEnum(DepartmentType), nullable=True, comment="适用部门（前厅/厨房/全部）")
+    department_type = Column(
+        SQLEnum(DepartmentType, values_callable=lambda obj: [e.value for e in obj]),
+        nullable=True,
+        comment="适用部门（前厅/厨房/全部）"
+    )
     category = Column(String(100), nullable=True, comment="课程分类（如：岗位技能、企业价值观、安全规范）")
 
     # 适用对象

@@ -202,16 +202,16 @@ def start_exam(db: Session, user_id: int, exam_id: int) -> ExamRecord:
         )
 
     # 检查用户是否可以参加考试
-    # 注意：只统计已完成的考试（COMPLETED或FAILED），IN_PROGRESS不算
+    # 注意：只统计已完成的考试（PASSED或FAILED），IN_PROGRESS不算
     existing_records = db.query(ExamRecord).filter(
         ExamRecord.user_id == user_id,
         ExamRecord.exam_id == exam_id
     ).order_by(ExamRecord.attempt_number.desc()).all()
 
-    # 只统计已提交的考试记录（已完成或失败）
+    # 只统计已提交的考试记录（通过或失败）
     completed_attempts = [
         r for r in existing_records
-        if r.status in [ExamStatus.COMPLETED, ExamStatus.FAILED]
+        if r.status in [ExamStatus.PASSED, ExamStatus.FAILED]
     ]
 
     # 计算当前是第几次考试（基于已完成的考试数）
@@ -337,18 +337,36 @@ def submit_exam(db: Session, user_id: int, exam_submit: ExamSubmit) -> Dict[str,
 
 def check_answer(question: Question, user_answer: str) -> bool:
     """检查答案是否正确"""
+    # 统一处理options格式（字典 → 列表）
+    options = question.options
+    if options and isinstance(options, dict):
+        # 字典格式：{'A': '内容', 'B': '...'}
+        # 转换为列表格式
+        options = [
+            {"label": key, "content": value, "is_correct": False}
+            for key, value in options.items()
+        ]
+
     if question.question_type.value == "single_choice":
         # 单选题：从options中找正确答案
-        if question.options:
-            for option in question.options:
+        # 注意：字典格式的options没有is_correct，需要用correct_answer字段
+        if question.correct_answer:
+            return question.correct_answer == user_answer
+        elif options:
+            for option in options:
                 if option.get("is_correct") and option.get("label") == user_answer:
                     return True
         return False
 
     elif question.question_type.value == "multiple_choice":
         # 多选题：用户答案需要完全匹配所有正确选项
-        if question.options:
-            correct_labels = [opt["label"] for opt in question.options if opt.get("is_correct")]
+        if question.correct_answer:
+            # 如果有correct_answer，使用它
+            user_labels = sorted(user_answer.split(","))
+            correct_labels = sorted(question.correct_answer.split(","))
+            return user_labels == correct_labels
+        elif options:
+            correct_labels = [opt["label"] for opt in options if opt.get("is_correct")]
             user_labels = sorted(user_answer.split(","))
             return sorted(correct_labels) == user_labels
         return False

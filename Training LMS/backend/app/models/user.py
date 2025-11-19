@@ -35,13 +35,22 @@ class User(Base):
     phone = Column(String(20), unique=True, index=True, nullable=True, comment="手机号")
 
     # 角色与职级
-    role = Column(SQLEnum(UserRole), nullable=False, default=UserRole.L1, comment="职级（L1-L5+）")
+    role = Column(
+        SQLEnum(UserRole, values_callable=lambda obj: [e.value for e in obj]),
+        nullable=False,
+        default=UserRole.L1,
+        comment="职级（L1-L5+）"
+    )
 
     # 组织架构关联
     position_id = Column(Integer, ForeignKey("positions.id"), nullable=True, comment="岗位ID")
     store_id = Column(Integer, ForeignKey("stores.id"), nullable=True, comment="门店ID（L1-L4有门店）")
     region_id = Column(Integer, ForeignKey("regions.id"), nullable=True, comment="区域ID（L5区域经理）")
-    department_type = Column(SQLEnum(DepartmentType), nullable=True, comment="部门类型（前厅/厨房/总部）")
+    department_type = Column(
+        SQLEnum(DepartmentType, values_callable=lambda obj: [e.value for e in obj]),
+        nullable=True,
+        comment="部门类型（前厅/厨房/总部）"
+    )
 
     # 职位特性（用于权限判断）
     is_store_manager = Column(Boolean, default=False, comment="是否店长（大店长制）")
