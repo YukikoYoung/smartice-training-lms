@@ -67,8 +67,8 @@ const CourseDetailPage: React.FC = () => {
   };
 
   const handleChapterClick = (chapterId: number) => {
-    // TODO: 实现章节学习页面跳转
-    alert(`章节 ${chapterId} 学习功能开发中...`);
+    // 跳转到章节学习页面
+    navigate(`/courses/${courseId}/chapters/${chapterId}/study`);
   };
 
   if (loading) {

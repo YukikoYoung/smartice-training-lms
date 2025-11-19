@@ -18,6 +18,9 @@ const ExamPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [timeRemaining, setTimeRemaining] = useState<number | null>(null);
+  const [examRecords, setExamRecords] = useState<any[]>([]);
+  const [canStartExam, setCanStartExam] = useState(true);
+  const [cooldownMessage, setCooldownMessage] = useState('');
 
   useEffect(() => {
     if (examId) {
@@ -50,8 +53,40 @@ const ExamPage: React.FC = () => {
       setLoading(true);
       setError('');
 
+      // 获取考试信息
       const examData = await examAPI.getDetail(parseInt(examId));
       setExam(examData);
+
+      // 获取考试记录
+      try {
+        const records = await examAPI.getRecords(parseInt(examId));
+        setExamRecords(records);
+
+        // 检查补考条件
+        if (records.length > 0) {
+          const latestRecord = records[records.length - 1];
+          const isPassed = latestRecord.score !== null && latestRecord.score >= examData.pass_score;
+
+          // 检查是否已用完所有机会
+          if (latestRecord.attempt_number >= examData.max_attempts && !isPassed) {
+            setCanStartExam(false);
+            setCooldownMessage(`您已用完所有考试机会（${examData.max_attempts}次），请联系管理员申请重置。`);
+          }
+          // 检查是否在冷却期内
+          else if (latestRecord.next_retake_at && !isPassed) {
+            const nextRetakeDate = new Date(latestRecord.next_retake_at);
+            const now = new Date();
+            if (now < nextRetakeDate) {
+              setCanStartExam(false);
+              const daysRemaining = Math.ceil((nextRetakeDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+              setCooldownMessage(`补考冷却期中，请在 ${nextRetakeDate.toLocaleDateString()} 后重新考试（还需等待${daysRemaining}天）`);
+            }
+          }
+        }
+      } catch (recordErr) {
+        console.warn('获取考试记录失败:', recordErr);
+        // 继续执行，不阻塞考试信息显示
+      }
     } catch (err: any) {
       console.error('加载考试信息失败:', err);
       setError(err.message || '加载考试信息失败');
@@ -239,6 +274,10 @@ const ExamPage: React.FC = () => {
 
   // 考试开始前的信息页
   if (!examStarted) {
+    const attemptNumber = examRecords.length > 0 ? examRecords[examRecords.length - 1].attempt_number : 0;
+    const hasAttempted = examRecords.length > 0;
+    const latestRecord = hasAttempted ? examRecords[examRecords.length - 1] : null;
+
     return (
       <div className="exam-info-page">
         <div className="exam-info-card">
@@ -247,6 +286,42 @@ const ExamPage: React.FC = () => {
           {error && (
             <div className="alert alert-error">
               {error}
+            </div>
+          )}
+
+          {/* 补考冷却期提示 */}
+          {!canStartExam && cooldownMessage && (
+            <div className="alert" style={{
+              backgroundColor: '#fef3c7',
+              border: '1px solid: #fbbf24',
+              color: '#92400e',
+              padding: '12px 16px',
+              borderRadius: '6px',
+              marginBottom: '16px'
+            }}>
+              ⚠️ {cooldownMessage}
+            </div>
+          )}
+
+          {/* 考试记录提示 */}
+          {hasAttempted && latestRecord && (
+            <div className="exam-history" style={{
+              backgroundColor: '#eff6ff',
+              border: '1px solid #bfdbfe',
+              borderRadius: '6px',
+              padding: '12px 16px',
+              marginBottom: '16px'
+            }}>
+              <div style={{ fontWeight: 500, marginBottom: '8px' }}>📋 您的考试记录：</div>
+              <div style={{ fontSize: '14px', color: '#1e40af' }}>
+                <div>已考次数：{attemptNumber} / {exam.max_attempts}</div>
+                {latestRecord.score !== null && (
+                  <div>最近成绩：{latestRecord.score}分 {latestRecord.passed ? '✅ 已通过' : '❌ 未通过'}</div>
+                )}
+                {latestRecord.passed && (
+                  <div style={{ color: '#059669', marginTop: '4px' }}>🎉 恭喜您已通过此考试！</div>
+                )}
+              </div>
             </div>
           )}
 
@@ -285,8 +360,16 @@ const ExamPage: React.FC = () => {
             </ul>
           </div>
 
-          <button onClick={handleStartExam} className="btn-primary btn-large">
-            开始考试
+          <button
+            onClick={handleStartExam}
+            className="btn-primary btn-large"
+            disabled={!canStartExam}
+            style={!canStartExam ? {
+              backgroundColor: '#9ca3af',
+              cursor: 'not-allowed'
+            } : undefined}
+          >
+            {canStartExam ? '开始考试' : '暂时无法考试'}
           </button>
         </div>
       </div>

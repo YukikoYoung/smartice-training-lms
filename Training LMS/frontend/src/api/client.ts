@@ -2,10 +2,11 @@
  * Axios客户端配置
  */
 import axios from 'axios';
+import config from '../config/env';
 
 // 创建axios实例
 export const apiClient = axios.create({
-  baseURL: 'http://localhost:8000',
+  baseURL: config.apiBaseUrl,
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
